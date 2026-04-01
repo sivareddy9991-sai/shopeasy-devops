@@ -172,24 +172,28 @@
      Lesson  : backslash at end means line continues                                                                                                                                     
                                                                                                                                                                                          
   --------------------------
-  ERRORS AND FIXES LOG                                                                                                                                        --------------------------
-  Date        Phase  Error                        Fix                                                                                                         ----------  -----  ---------------------------  ------------------                                                                                                                     
-  2026-04-01  1      heredoc not closing          used vi editor                                                                                                                         
-  2026-04-01  1      wget backslash issue         Ctrl+C retyped
+  ERRORS AND FIXES LOG
+  -------------------------- 
+  Date        Phase  Error                        Fix                                                                                                         ----------  -----  ---------------------------  ------------------                                                                                          2026-04-01  1      heredoc not closing          used vi editor                                                                                              2026-04-01  1      wget backslash issue         Ctrl+C retyped
   --------------------------                                 
   USEFUL LINKS
-  --------------------------                                                                                                                                  GitHub Repo    : https://github.com/sivareddy9991-sai/shopeasy-devops
+  --------------------------
+  GitHub Repo    : https://github.com/sivareddy9991-sai/shopeasy-devops
   Jenkins UI     : http://localhost:8080  (Phase 4)                                                                                                           JFrog UI       : https://sivareddy9991-sai.jfrog.io  (Phase 5)                           
   Grafana UI     : http://localhost:3000  (Phase 9)
   Prometheus UI  : http://localhost:9090  (Phase 9)                                                                                                           Minikube IP    : run minikube ip  (Phase 6)                           
   --------------------------
-  PHASE 2 - MICROSERVICES CODE                                                                                                                                --------------------------
-  (fill after Phase 2 is done)                                                                                                                                --------------------------
+  PHASE 2 - MICROSERVICES CODE
+  --------------------------
+  (fill after Phase 2 is done)
+  --------------------------
   PHASE 3 - DOCKER
   --------------------------
-  (fill after Phase 3 is done)                                                                                                                                --------------------------
+  (fill after Phase 3 is done)
+  --------------------------
   PHASE 4 - JENKINS
-  --------------------------                                                                                                                                  (fill after Phase 4 is done)
+  --------------------------
+  (fill after Phase 4 is done)
   --------------------------
   PHASE 5 - JFROG ARTIFACTORY
   ---------------------------                        
