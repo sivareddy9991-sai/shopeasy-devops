@@ -2,11 +2,10 @@
   # Author  : sai (kalkal)                                                                                                                                                               
   # Started : 2026-04-01                                                                                                                                                                 
   # Stack   : Jenkins | JFrog | Docker | K8s | Terraform | Ansible | Prometheus | Grafana                                                                                                
-  # Cost    : Rs.0 (fully local)                                                                                                                                                         
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  SYSTEM INFO                                                                                                                                                                            
-  ================================================================                                                                                                                       
+  # Cost    : Rs.0 (fully local)                                                                                                                                                        
+  ------------------------------------
+  SYSTEM INFO
+  ------------------------------------
   OS       : Ubuntu 24.04 LTS (WSL2)                                                                                                                                                     
   Kernel   : 6.6.87.2-microsoft-standard-WSL2                                                                                                                                            
   Laptop   : LAPTOP-ARDQ592E                                                                                                                                                             
@@ -15,10 +14,11 @@
   Disk     : 1007GB (953GB free)                                                                                                                                                         
   User     : kalkal                                                                                                                                                                      
   Home Dir : /home/kalkal/                                                                                                                                                               
-  Project  : /home/kalkal/shopeasy/                                                                                                                                                      
-                                                                                                                                                                                           ================================================================                                                                                                                       
-  PROJECT FOLDER STRUCTURE                                                                                                                                                               
-  ================================================================                                                                                                                         shopeasy/                                                                                                                                                                              
+  Project  : /home/kalkal/shopeasy/                                                                                                                            
+                          
+  ----------------------------
+  PROJECT FOLDER STRUCTURE
+  ----------------------------                                                                                                                                shopeasy/
   ├── user-service/       Node.js microservice  Port 3000                                                                                                                                
   ├── product-service/    Python microservice   Port 5000                                                                                                                                
   ├── jenkins/            Jenkinsfile CI/CD pipeline
@@ -26,14 +26,16 @@
   ├── terraform/          Infrastructure as Code                                                                                                                                         
   ├── monitoring/         Prometheus + Grafana configs                                                                                                                                   
   ├── ansible/            Configuration management                                                                                                                                       
-  └── docs/               This notes file lives here                                                                                                                                     
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  TOOLS AND VERSIONS                                                                                                                                                                     
-  ================================================================                                                                                                                         Tool        Version    Purpose                Status                                                                                                                                   
-  -------     -------    -------------------    -------                                                                                                                                  
+  └── docs/               This notes file lives here                                                                                                          
+                           
+  --------------------
+  TOOLS AND VERSIONS
+  --------------------
+  Tool        Version    Purpose                Status
+  --------------------
   Ubuntu      24.04LTS   Base OS                Done                                                                                                                                     
   Git         2.43.0     Version control        Done
+
   Python3     3.12.3     product-service lang   Done                                                                                                                                     
   curl        8.5.0      HTTP requests          Done                                                                                                                                     
   wget        1.21.4     File downloads         Done                                                                                                                                     
@@ -50,25 +52,20 @@
   Prometheus  -          Metrics Collection     Pending                                                                                                                                  
   Grafana     -          Dashboards             Pending                                                                                                                                  
                                                                                                                                                                                          
-  ================================================================                                                                                                                       
-  PHASE PROGRESS                                                                                                                                                                         
-  ================================================================                                                                                                                         Phase   Topic                   Status    Date                                                                                                                                         
-  -----   --------------------    -------   ----------                                                                                                                                   
-  1       Linux + Git             Done      2026-04-01                                                                                                                                   
-  2       Microservices Code      Pending
-  3       Docker                  Pending                                                                                                                                                
-  4       Jenkins CI/CD           Pending                                                                                                                                                
-  5       JFrog Artifactory       Pending                                                                                                                                                
-  6       Kubernetes              Pending                                                                                                                                                
-  7       Terraform               Pending                                                                                                                                                
-  8       Ansible                 Pending                                                                                                                                                
-  9       Prometheus + Grafana    Pending                                                                                                                                                
-  10      Observability           Pending                                                                                                                                                
-                                                                                                                                                                                         
-  ================================================================
-  PHASE 1 - LINUX AND GIT                                                                                                                                                                
-  ================================================================                                                                                                                       
-                                                                                                                                                                                         
+  ----------------------
+  PHASE   PROGRESS
+  ----------------------
+  Phase   Topic                   Status    Date
+
+  1       Linux + Git             Done      2026-04-01                                                                                                        2       Microservices Code      Pending
+  3       Docker                  Pending                                                                                                                     4       Jenkins CI/CD           Pending                             
+  5       JFrog Artifactory       Pending                                                                                                                     6       Kubernetes              Pending                           
+  7       Terraform               Pending                                                                                      
+  8       Ansible                 Pending                                                                                                                     9       Prometheus + Grafana    Pending                                                                                                            
+  10      Observability           Pending
+  ---------------------
+  PHASE 1 - LINUX AND GIT
+  ---------------------
   WHAT IS LINUX?                                                                                                                                                                         
   - 96% of servers run Linux                                                                                                                                                             
   - Docker, Jenkins, Kubernetes all run on Linux                                                                                                                                         
