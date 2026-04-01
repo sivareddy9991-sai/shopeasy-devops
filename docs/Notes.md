@@ -100,7 +100,7 @@
   - Ctrl+C = cancel any stuck command                                                                                                                                                    
   - | (pipe) = send output of one command to another                                                                                                                                     
                                                                                                                                                                                          
-  LINUX COMMANDS REFERENCE:                                                                                                                                                                Command                     What it does                                                                                                                                               
+  LINUX COMMANDS REFERENCE:                                                                                                                                   Command                     What it does
   --------------------------  --------------------------------                                                                                                                           
   pwd                         show current directory                                                                                                                                     
   ls -la                      list all files with details                                                                                                                                
@@ -171,53 +171,46 @@
      Fix     : pressed Ctrl+C and retyped correctly                                                                                                                                      
      Lesson  : backslash at end means line continues                                                                                                                                     
                                                                                                                                                                                          
-  ================================================================                                                                                                                       
-  ERRORS AND FIXES LOG                                                                                                                                                                   
-  ================================================================                                                                                                                       
-  Date        Phase  Error                        Fix                                                                                                                                    
-  ----------  -----  ---------------------------  ------------------                                                                                                                     
+  --------------------------
+  ERRORS AND FIXES LOG                                                                                                                                        --------------------------
+  Date        Phase  Error                        Fix                                                                                                         ----------  -----  ---------------------------  ------------------                                                                                                                     
   2026-04-01  1      heredoc not closing          used vi editor                                                                                                                         
   2026-04-01  1      wget backslash issue         Ctrl+C retyped
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  USEFUL LINKS                                                                                                                                                                           
-  ================================================================                                                                                            GitHub Repo    : https://github.com/sivareddy9991-sai/shopeasy-devops
+  --------------------------                                 
+  USEFUL LINKS
+  --------------------------                                                                                                                                  GitHub Repo    : https://github.com/sivareddy9991-sai/shopeasy-devops
   Jenkins UI     : http://localhost:8080  (Phase 4)                                                                                                           JFrog UI       : https://sivareddy9991-sai.jfrog.io  (Phase 5)                           
   Grafana UI     : http://localhost:3000  (Phase 9)
   Prometheus UI  : http://localhost:9090  (Phase 9)                                                                                                           Minikube IP    : run minikube ip  (Phase 6)                           
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  PHASE 2 - MICROSERVICES CODE                                                                                                                                                           
-  ================================================================                                                                                                                       
-  (fill after Phase 2 is done)                                                                                                                                                           
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  PHASE 3 - DOCKER                                                                                                                                                                       
-  ================================================================                                                                                                                       
-  (fill after Phase 3 is done)                                                                                                                                                           
-                                                                                                                                                                                         
-  ================================================================                                                                                                                       
-  PHASE 4 - JENKINS                                                                                                                                                                      
-  ================================================================                                                                                            (fill after Phase 4 is done)                           
-  ================================================================                                                                                            PHASE 5 - JFROG ARTIFACTORY             
-  ================================================================                                                                                                                       
-  (fill after Phase 5 is done)                                                                                                                                                                                                                                                                                            ================================================================                                                                                            PHASE 6 - KUBERNETES
-  ================================================================                                                                                                                  
-  (fill after Phase 6 is done)
-
-  ================================================================
+  --------------------------
+  PHASE 2 - MICROSERVICES CODE                                                                                                                                --------------------------
+  (fill after Phase 2 is done)                                                                                                                                --------------------------
+  PHASE 3 - DOCKER
+  --------------------------
+  (fill after Phase 3 is done)                                                                                                                                --------------------------
+  PHASE 4 - JENKINS
+  --------------------------                                                                                                                                  (fill after Phase 4 is done)
+  --------------------------
+  PHASE 5 - JFROG ARTIFACTORY
+  ---------------------------                        
+  (fill after Phase 5 is done)
+  ---------------------------
+  PHASE 6 - KUBERNETES
+  ---------------------------
+  (fill after Phase is done)
+  ---------------------------
   PHASE 7 - TERRAFORM
-  ================================================================
+  ---------------------------
   (fill after Phase 7 is done)
-
-  ================================================================
+  ---------------------------
   PHASE 8 - ANSIBLE
-  ================================================================
+  ---------------------------
   (fill after Phase 8 is done)
-  ================================================================                                                                                            PHASE 9 - PROMETHEUS AND GRAFANA
-  ================================================================
+  ---------------------------
+  PHASE 9 - PROMETHEUS AND GRAFANA
+  ---------------------------
   (fill after Phase 9 is done)
-  ================================================================                                                                                      
+  ---------------------------
   PHASE 10 - OBSERVABILITY
-  ================================================================ 
+  ---------------------------
   (fill after Phase 10 is done)                                                
