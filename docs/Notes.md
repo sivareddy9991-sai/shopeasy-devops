@@ -23,7 +23,7 @@
   shopeasy/
   
   ├── user-service/       Node.js microservice  Port 3000                                                                                                                                
-  ├── product-service/    Python microservice   Port 5000                                                                                                                                
+  ├── product-service/    Java microservice   Port 8081                                                                                                                                
   ├── jenkins/            Jenkinsfile CI/CD pipeline
   ├── k8s/                Kubernetes YAML files                                                                                                                                          
   ├── terraform/          Infrastructure as Code                                                                                                                                         
@@ -39,7 +39,9 @@
   Ubuntu      24.04LTS   Base OS                Done                                                                                                                                     
   Git         2.43.0     Version control        Done
 
-  Python3     3.12.3     product-service lang   Done                                                                                                                                     
+  Java        17         Product-service lang   Done
+
+  Maven       3          Java build tool        Done                                                                                                     
   curl        8.5.0      HTTP requests          Done                                                                                                                                     
   wget        1.21.4     File downloads         Done                                                                                                                                     
   tree        2.1.1      Folder visualization   Done                                                                                                                                     

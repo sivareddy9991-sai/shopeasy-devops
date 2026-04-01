@@ -17,7 +17,7 @@
                                                                                                                                                                                          
   ## Microservices                                                                                                                                                                       
   - user-service    : Node.js  (Port 3000)                                                                                                                                               
-  - product-service : Python   (Port 5000)                                                                                                                                               
+  - product-service : Java   (Port 8081)                                                                                                                                               
                                                                                                                                                                                          
   ## Project Status                                                                                                                                                                      
   - [x] Phase 1  : Linux + Git Setup                                                                                                                                                     
