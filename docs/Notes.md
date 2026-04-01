@@ -18,7 +18,8 @@
                           
   ----------------------------
   PROJECT FOLDER STRUCTURE
-  ----------------------------                                                                                                                                shopeasy/
+  ----------------------------
+  shopeasy/
   ├── user-service/       Node.js microservice  Port 3000                                                                                                                                
   ├── product-service/    Python microservice   Port 5000                                                                                                                                
   ├── jenkins/            Jenkinsfile CI/CD pipeline
