@@ -36,8 +36,8 @@
   --------------------
   Tool        Version    Purpose                Status
   --------------------
-  Ubuntu      24.04LTS   Base OS                Done                                                                                                                                     
-  Git         2.43.0     Version control        Done
+
+  Ubuntu      24.04LTS   Base OS                Done                                                                                                                      Git         2.43.0     Version control        Done
 
   Java        17         Product-service lang   Done
 
@@ -46,7 +46,9 @@
   wget        1.21.4     File downloads         Done                                                                                                                                     
   tree        2.1.1      Folder visualization   Done                                                                                                                                     
   vim/vi      9.1        Text editor            Done                                                                                                                                     
-  Node.js     -          user-service lang      Pending                                                                                                                                  
+  Node.js     v24.14.1   user-service lang      Done
+
+  Express     v5.2.1     Node.js webframework   Done                                                                                                                         
   Docker      -          Containerization       Pending                                                                                                                                  
   Jenkins     -          CI/CD Pipeline         Pending                                                                                                                                  
   JFrog       -          Artifact Management    Pending                                                                                                                                  
@@ -62,7 +64,7 @@
   ----------------------
   Phase   Topic                   Status    Date
 
-  1       Linux + Git             Done      2026-04-01                                                                                                        2       Microservices Code      Pending
+  1       Linux + Git             Done      2026-04-01                                                                                                        2       Microservices Code      Done      2026-04-02
   3       Docker                  Pending                                                                                                                     4       Jenkins CI/CD           Pending                             
   5       JFrog Artifactory       Pending                                                                                                                     6       Kubernetes              Pending                           
   7       Terraform               Pending                                                                                      
@@ -187,7 +189,78 @@
   --------------------------
   PHASE 2 - MICROSERVICES CODE
   --------------------------
-  (fill after Phase 2 is done)
+
+   WHAT ARE MICROSERVICES?
+  - Small independent services each doing ONE job
+  - Each service has its own language, port, database
+  - Services talk to each other via REST API
+  - If one fails others keep running
+  - Scale each service independently
+
+  WHAT IS REST API?
+  - Standard way services talk to each other
+  - GET    = fetch data
+  - POST   = create data
+  - PUT    = update data
+  - DELETE = remove data
+  - Returns JSON format data
+
+  WHAT IS EXPRESS?
+  - Web framework for Node.js
+  - Makes building REST APIs easy
+  - app.get()  = handle GET request
+  - app.post() = handle POST request
+  - app.listen(PORT) = start server on port
+
+  USER-SERVICE (Node.js):
+  - Location : ~/shopeasy/user-service/
+  - Port     : 3000
+  - Language : Node.js v24.14.1
+  - Framework: Express v5.2.1
+  - Files    : server.js, package.json, .gitignore
+
+  USER-SERVICE ENDPOINTS:
+  Method  Endpoint      Description         Status
+  ------  ----------    ----------------    -------
+  GET     /health       health check        tested
+  GET     /users        get all users       tested
+  GET     /users/:id    get single user     tested
+  POST    /users        create user         tested
+
+  USER-SERVICE TEST RESULTS:
+  curl http://localhost:3000/health
+  → {"status":"UP","service":"user-service","version":"1.0.0"}
+
+  curl http://localhost:3000/users
+  → {"success":true,"count":3,"data":[...]}
+
+  curl http://localhost:3000/users/1
+  → {"success":true,"data":{"id":1,"name":"sai"...}}
+
+  curl -X POST http://localhost:3000/users -d '{"name":"ravi"...}'
+  → {"success":true,"data":{"id":4,"name":"ravi"...}}
+
+  curl http://localhost:3000/users/99
+  → {"success":false,"message":"User not found"}
+
+  NODE.JS COMMANDS REFERENCE:
+  Command                  What it does
+  --------------------     ---------------------------
+  npm init -y              create package.json
+  npm install express      install express framework
+  node server.js           start the server
+  Ctrl+C                   stop the server
+  npm install              reinstall all dependencies
+
+  PRODUCT-SERVICE (Java Spring Boot):
+  - Location : ~/shopeasy/product-service/
+  - Port     : 8081
+  - Language : Java 17
+  - Framework: Spring Boot 3.x
+  - Build    : Maven 3.8.7
+  Status     : IN PROGRESS
+
+  
   --------------------------
   PHASE 3 - DOCKER
   --------------------------
