@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+    user-service:
+      image: shopeasy/user-service:1.0.0
+      container_name: user-service        
+      ports:
+        - "3000:3000"
+      restart: unless-stopped
+
+    product-service:
+      image: shopeasy/product-service:1.0.0
+      container_name: product-service
+      ports:
+        - "8081:8081"
+      restart: unless-stopped 
