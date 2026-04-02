@@ -293,7 +293,66 @@
   --------------------------
   PHASE 3 - DOCKER
   --------------------------
-  (fill after Phase 3 is done)
+### What we built
+  - Dockerized both services (user-service + product-service)
+  - docker-compose.yml to start both with one command
+  - .dockerignore for both services
+
+  ### Docker installation
+  sudo apt install -y docker.io
+  sudo service docker start
+  sudo usermod -aG docker $USER   # run without sudo (reopen terminal after)
+
+  ### Dockerfile — user-service (Node.js)
+  FROM node:20-alpine
+  WORKDIR /app
+  COPY package.json .
+  RUN npm install
+  COPY . .
+  EXPOSE 3000
+  CMD ["node", "server.js"]
+
+  ### Dockerfile — product-service (Java)
+  FROM eclipse-temurin:17-jre-alpine
+  WORKDIR /app
+  COPY target/product-service-1.0.0.jar app.jar
+  EXPOSE 8081
+  CMD ["java", "-jar", "app.jar"]
+
+  ### Build images
+  docker build -t shopeasy/user-service:1.0.0 .
+  docker build -t shopeasy/product-service:1.0.0 .
+
+  ### Essential Docker commands
+  docker images                    # list all images
+  docker ps                        # list running containers
+  docker ps -a                     # list all containers (including stopped)
+  docker run -d -p 3000:3000 --name user-service shopeasy/user-service:1.0.0
+  docker stop <name>               # stop container
+  docker start <name>              # start container
+  docker rm <name>                 # delete container
+  docker rmi <image>               # delete image
+  docker logs <name>               # view container logs
+
+  ### Docker Compose commands
+  docker-compose up -d             # start all services background
+  docker-compose down              # stop and remove containers
+  docker-compose stop              # stop containers (keep them)
+  docker-compose start             # start stopped containers
+  docker-compose ps                # show status
+  docker-compose logs              # show all logs
+  docker-compose logs -f           # follow logs in real time
+  docker-compose restart           # restart all services
+
+  ### Key concepts
+  - Image = blueprint (read-only), Container = running instance
+  - Docker Hub = public registry (like GitHub for images)
+  - JFrog = private registry (your own images)
+  - alpine = lightweight Linux base (5MB vs 200MB Ubuntu)
+  - JRE not JDK in Dockerfile (JRE runs, JDK compiles — smaller image)
+  - COPY package.json before COPY . . = Docker layer caching (faster builds)
+  - .dockerignore = exclude node_modules, target/, secrets from image
+  - restart: unless-stopped = auto restart container if it crashes
   --------------------------
   PHASE 4 - JENKINS
   --------------------------
