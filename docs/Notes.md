@@ -258,9 +258,38 @@
   - Language : Java 17
   - Framework: Spring Boot 3.x
   - Build    : Maven 3.8.7
-  Status     : IN PROGRESS
-
   
+
+  ## Phase 2 Progress — product-service COMPLETE (2026-04-02)                                                                                                                              
+  ### What we built                                                                                                                                           - Java 17 + Spring Boot 3.2.0 REST API
+  - Port: 8081                                                                                                                                                                           
+  - 4 endpoints: GET /health, GET /products, GET /products/{id}, POST /products                                                                                                          
+  - In-memory product list (no database yet)                                                                                                                                                                                                                                                                              ### Files created                                                                                                                                           - pom.xml (Spring Boot parent, spring-boot-starter-web) 
+
+  - ProductServiceApplication.java (@SpringBootApplication entry point)                                                                                                                  
+  - model/Product.java (id, name, category, price, stock + getters/setters)                                                                                                              
+  - controller/ProductController.java (@RestController, 4 endpoints)                                                                                                                     
+  - application.properties (server.port=8081)                                                                                                                                            
+  - src/test/java/com/shopeasy/AppTest.java (JUnit 5 contextLoads test)                                                                                                                                                                                                                                                   ### Build command                                                                                                                                           cd ~/shopeasy/product-service
+  
+  mvn clean package -DskipTests     # build JAR                                                                                                                                          
+  mvn spring-boot:run               # run service                                                                                                                                                                                                                                                                         ### All curl tests passed                                                                                                                                   
+  curl -s http://localhost:8081/health
+
+  curl -s http://localhost:8081/products                                                                                                                                                 
+  curl -s http://localhost:8081/products/1                                                                                                                                               
+  curl -s -X POST http://localhost:8081/products -H "Content-Type: application/json" -d '{"name":"Keyboard","category":"Electronics","price":1500.00,"stock":30}'                        
+                                                                                                                                                              ### Errors fixed                                                                                                                                            
+ - AppTest.java used JUnit 4 (org.junit) — Spring Boot 3.x needs JUnit 5 (org.junit.jupiter.api)                                                             
+ - Fix: replaced import with org.junit.jupiter.api.Test + @SpringBootTest
+ 
+ - Multiline curl with backslash fails on paste — always use single-line curl                                                                                                           
+                                                                                                                                                             ### Key concepts learned
+ - pom.xml = Java's package.json (dependency manager) 
+ - @SpringBootApplication = entry point annotation                                                                                                           - @RestController = marks class as REST API handler                                                                                                         - @GetMapping / @PostMapping = route handlers                              
+ - @PathVariable = extracts {id} from URL                    
+ - @RequestBody = parses JSON body into Java object                                                                                                          - Maven lifecycle: clean → compile → test → package
+ - -DskipTests skips test RUN but not COMPILE (use fixed AppTest.java)  
   --------------------------
   PHASE 3 - DOCKER
   --------------------------
