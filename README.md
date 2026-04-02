@@ -21,7 +21,7 @@
                                                                                                                                                                                          
   ## Project Status                                                                                                                                                                      
   - [x] Phase 1  : Linux + Git Setup                                                                                                                                                     
-  - [ ] Phase 2  : Microservices Code                                                                                                                                                    
+  - [x] Phase 2  : Microservices Code(completed)                                                                                                                                                    
   - [ ] Phase 3  : Docker                                                                                                                                                                
   - [ ] Phase 4  : Jenkins CI/CD                                                                                                                                                         
   - [ ] Phase 5  : JFrog Artifactory                                                                                                                                                     
