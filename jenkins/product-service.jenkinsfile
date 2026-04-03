@@ -1,0 +1,57 @@
+pipeline {
+      agent any
+
+      stages {
+          stage('Checkout') {
+              steps {
+                  echo 'Pulling code from GitHub...'
+                  git branch: 'main',
+                      url: 'https://github.com/sivareddy9991-sai/shopeasy-devops.git'
+              }
+          }
+
+          stage('Build JAR') {
+              steps {
+                  echo 'Building Spring Boot JAR...'
+                  dir('product-service') {
+                      sh 'mvn clean package -DskipTests'
+                  }
+              }
+          }
+
+          stage('Build Docker Image') {
+              steps {
+                  echo 'Building Docker image...'
+                  dir('product-service') {
+                      sh 'docker build -t shopeasy/product-service:1.0.0 .'
+                  }
+              }
+          }
+
+          stage('Run Container') {
+              steps {
+                  echo 'Starting container...'
+                  sh 'docker stop product-service || true'
+                  sh 'docker rm product-service || true'
+                  sh 'docker run -d -p 8081:8081 --name product-service shopeasy/product-service:1.0.0'
+              }
+          }
+
+          stage('Health Check') {
+              steps {
+                  echo 'Checking service health...'
+                  sh 'sleep 10'
+                  sh 'curl -s http://localhost:8081/health'
+              }
+          }
+      }
+
+      post {
+          success {
+              echo 'Pipeline SUCCESS! product-service is running!'
+          }
+          failure {
+              echo 'Pipeline FAILED! Check the logs above.'
+          }
+      }
+  }

@@ -1,0 +1,42 @@
+pipeline {
+      agent any
+      stages {
+          stage('Checkout') {
+              steps {
+                  echo 'Pulling code from GitHub...'
+                  git branch: 'main', url: 'https://github.com/sivareddy9991-sai/shopeasy-devops.git'
+              }
+          }
+          stage('Install Dependencies') {
+              steps {
+                  dir('user-service') {
+                      sh 'npm install'
+                  }
+              }
+          }
+          stage('Build Docker Image') {
+              steps {
+                  dir('user-service') {
+                      sh 'docker build -t shopeasy/user-service:1.0.0 .'
+                  }
+              }
+          }
+          stage('Run Container') {
+              steps {
+                  sh 'docker stop user-service || true'
+                  sh 'docker rm user-service || true'
+                  sh 'docker run -d -p 3000:3000 --name user-service shopeasy/user-service:1.0.0'
+              }
+          }
+          stage('Health Check') {
+              steps {
+                  sh 'sleep 5'
+                  sh 'curl -s http://localhost:3000/health'
+              }
+          }
+      }
+      post {
+          success { echo 'Pipeline SUCCESS! user-service is running!' }
+          failure { echo 'Pipeline FAILED! Check the logs above.' }
+      }
+  }
