@@ -356,7 +356,49 @@
   --------------------------
   PHASE 4 - JENKINS
   --------------------------
-  (fill after Phase 4 is done)
+### Installation
+  curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | gpg --dearmor | sudo tee /usr/share/keyrings/jenkins-keyring.gpg > /dev/null
+  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7198F4B714ABFC68
+  sudo apt update && sudo apt install -y jenkins
+  sudo service jenkins start
+  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+  ### Jenkins URL
+  http://localhost:8080
+  admin / admin123
+
+  ### Give Jenkins Docker permission
+  sudo usermod -aG docker jenkins
+  sudo service jenkins restart
+
+  ### Pipeline stages
+  Checkout → Install Deps → Build JAR/Docker → Run Container → Health Check
+
+  ### Jenkinsfiles location
+  jenkins/user-service.jenkinsfile
+  jenkins/product-service.jenkinsfile
+
+  ### Pipeline config (SCM)
+  Definition: Pipeline script from SCM
+  SCM: Git
+  URL: https://github.com/sivareddy9991-sai/shopeasy-devops.git
+  Branch: */main
+  Script Path: jenkins/user-service.jenkinsfile
+
+  ### Key concepts
+  - Jenkins = automation robot (runs pipeline on every code push)
+  - Jenkinsfile = pipeline script stored in GitHub (version controlled)
+  - agent any = run on any available Jenkins agent
+  - stage = one step in pipeline (Checkout, Build, Deploy)
+  - post success/failure = runs after pipeline finishes
+  - Pipeline script from SCM = Jenkins reads Jenkinsfile from GitHub
+  - || true = don't fail if container doesn't exist yet
+
+  ### Errors fixed
+  - GPG key error → used apt-key adv --keyserver to import key by ID
+  - Docker permission denied → sudo usermod -aG docker jenkins
+  - target/ in .dockerignore → removed it so Docker can find the JAR
   --------------------------
   PHASE 5 - JFROG ARTIFACTORY
   ---------------------------                        
