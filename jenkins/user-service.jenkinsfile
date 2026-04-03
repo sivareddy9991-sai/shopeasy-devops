@@ -21,6 +21,12 @@ pipeline {
                   }
               }
           }
+	  stage('Push to Nexus') {
+              steps {
+                  sh 'docker tag shopeasy/user-service:1.0.0 localhost:8083/shopeasy/user-service:1.0.0'
+                  sh 'docker push localhost:8083/shopeasy/user-service:1.0.0'
+              }
+          }
           stage('Run Container') {
               steps {
                   sh 'docker stop user-service || true'

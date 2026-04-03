@@ -27,6 +27,12 @@ pipeline {
                   }
               }
           }
+	  stage('Push to Nexus') {
+              steps {
+                  sh 'docker tag shopeasy/product-service:1.0.0 localhost:8083/shopeasy/product-service:1.0.0'
+                  sh 'docker push localhost:8083/shopeasy/product-service:1.0.0'
+              }
+          }
 
           stage('Run Container') {
               steps {
