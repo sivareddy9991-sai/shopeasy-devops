@@ -49,11 +49,11 @@
   Node.js     v24.14.1   user-service lang      Done
 
   Express     v5.2.1     Node.js webframework   Done                                                                                                                         
-  Docker      -          Containerization       Pending                                                                                                                                  
-  Jenkins     -          CI/CD Pipeline         Pending                                                                                                                                  
-  JFrog       -          Artifact Management    Pending                                                                                                                                  
-  Minikube    -          Local Kubernetes       Pending                                                                                                                                  
-  kubectl     -          K8s CLI                Pending                                                                                                                                  
+  Docker      -          Containerization       Done                                                                                                                                 
+  Jenkins     -          CI/CD Pipeline         Done                                                                                                                                  
+  NEXUS       -          Artifact Management    Done                                                                                                                                  
+  Minikube    -          Local Kubernetes       Done                                                                                                                                  
+  kubectl     -          K8s CLI                Done                                                                                                                                  
   Terraform   -          IaC                    Pending                                                                                                                                  
   Ansible     -          Config Management      Pending                                                                                                                                  
   Prometheus  -          Metrics Collection     Pending                                                                                                                                  
@@ -62,11 +62,12 @@
   ----------------------
   PHASE   PROGRESS
   ----------------------
-  Phase   Topic                   Status    Date
+  Phase   Topic                   Status    
 
-  1       Linux + Git             Done      2026-04-01                                                                                                        2       Microservices Code      Done      2026-04-02
-  3       Docker                  Pending                                                                                                                     4       Jenkins CI/CD           Pending                             
-  5       JFrog Artifactory       Pending                                                                                                                     6       Kubernetes              Pending                           
+  1       Linux + Git             Done
+  2       Microservices Code      Done
+  3       Docker                  Done                                                                                                                        4       Jenkins CI/CD           Done
+  5       NEXUS                   Done                                                                                                                        6       Kubernetes              Done
   7       Terraform               Pending                                                                                      
   8       Ansible                 Pending                                                                                                                     9       Prometheus + Grafana    Pending                                                                                                            
   10      Observability           Pending
@@ -400,13 +401,82 @@
   - Docker permission denied → sudo usermod -aG docker jenkins
   - target/ in .dockerignore → removed it so Docker can find the JAR
   --------------------------
-  PHASE 5 - JFROG ARTIFACTORY
+  PHASE 5 - NEXUS
   ---------------------------                        
-  (fill after Phase 5 is done)
+  ### What is Nexus?
+  Nexus is a private artifact repository manager.
+  Stores Docker images, Maven JARs, npm packages.                                                                                                             In real companies, no one pulls from Docker Hub directly.                                                                                                   Everything goes through Nexus for security and control.                            
+                                                                                                                                                              ### Why Nexus over Docker Hub?
+  - Private - your code stays inside company
+  - Fast - images cached locally, no internet needed                                                                                                          - Controlled - only approved images get deployed                                                                                                                                       
+                                                                                                                                                              ### Setup                                                                                                                                                   - Nexus UI runs on port 8085  
+  - Docker registry runs on port 8083                               
+  - Data stored at /home/kalkal/nexus/data                                                                                              
+  - Config at /home/kalkal/nexus/docker-compose.yml
+ 
+ ### Credentials 
+  
+  - Username: admin                                                                                                                                                                      
+  - Password: Nexus123
+                                                                                                                                                             ### Start Nexus
+ cd /home/kalkal/nexus && docker-compose up -d                                                                                                                                          
+                                                                                                                                                             ### Key Commands
+
+ # Login to Nexus Docker registry  :  docker login localhost:8083 -u admin -p Nexus123                                                                                                                                       
+ # Tag image for Nexus : docker tag shopeasy/user-service:1.0.0 localhost:8083/shopeasy/user-service:1.0.0                                                                                                                                                       
+ # Push image to Nexusdocker push localhost:8083/shopeasy/user-service:1.0.0                                                                                                                                                                                           
+ ### Jenkins Integration
+  - Jenkins Docker config: /var/lib/jenkins/.docker/config.json    
+  - Pipelines have Push to Nexus stage after Build Docker Image                                                                                                                          
+                                                                                                                                                             ### Repository    
+ - Name: shopeasy-docker 
+ - Type: docker (hosted)                                                                                                                            
+ - Port: 8083
   ---------------------------
   PHASE 6 - KUBERNETES
   ---------------------------
-  (fill after Phase is done)
+  ## Phase 6 - Kubernetes (Minikube)
+  ### What is Kubernetes?  Kubernetes (K8s) automatically manages containers:
+  
+  - Auto-restarts crashed containers                                                                                                                                                     
+  - Scales up/down based on load                                                                                                                                                         
+  - Load balances traffic                                                                                                                                                                
+  - Industry standard for production container management                                                                                                                                                                                                                                                                ### What is Minikube?                                                                                                                                        
+ Minikube runs a single-node Kubernetes cluster on your laptop.
+ Same concepts as production Kubernetes, zero cost.                                                                                                                                     
+                                                                                                                                                             ### Installation
+ minikube version: v1.38.1
+ kubectl version: v1.35.3                                                                                                                                                               
+                                                                                                                                                             ### Key Commands
+ # Start cluster
+ minikube start --driver=docker 
+
+ # Check cluster
+ kubectl get nodes
+
+ # Create namespace
+ kubectl create namespace shopeasy
+
+ # Deploy service
+ 
+ kubectl apply -f k8s/user-service.yml
+ kubectl apply -f k8s/product-service.yml
+ 
+ # Check pods
+ kubectl get pods -n shopeasy
+
+ # Load local image into Minikube
+ minikube image load shopeasy/user-service:1.0.0
+
+ # Access service
+ kubectl port-forward service/user-service 3000:3000 -n shopeasy
+ 
+ ### Key Concepts 
+
+ -  Pod: smallest unit, runs your container
+ - Deployment: manages pods, restarts if crashed                                                                                                             - Service: gives network access to pods                                                                                                                     - Namespace: groups related resources together                             
+                                                                                                                                                            ### Files
+k8s/user-service.yml    - Deployment + Service for user-service                                                                                             k8s/product-service.yml - Deployment + Service for product-service 
   ---------------------------
   PHASE 7 - TERRAFORM
   ---------------------------
