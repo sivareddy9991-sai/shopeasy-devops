@@ -480,7 +480,45 @@ k8s/user-service.yml    - Deployment + Service for user-service                 
   ---------------------------
   PHASE 7 - TERRAFORM
   ---------------------------
-  (fill after Phase 7 is done)
+  ### What is Terraform?
+ 
+  Terraform is Infrastructure as Code (IaC).
+  Instead of creating resources manually, you write code.
+  This means infrastructure is repeatable, versioned, and automated.
+  
+  ### Why Terraform?
+
+  - Never create infrastructure manually in r- Code is stored in Git - full history of changes                                                                                                                                      
+  - Same code can create same infrastructure anywhere                                                                                                                                    
+  - Plan before apply - see changes before making them 
+  
+  ### Key Commands 
+
+  # Initialize - downloads providers   
+   terraform init                                                                                                                                                                            
+  # Plan - shows what will be created/changed/destroyed  
+   terraform plan
+ 
+  # Apply - actually creates the resources 
+   terraform apply 
+  
+  # Destroy - deletes all resources 
+   terraform destroy    
+  
+  # Import existing resource into Terraform state 
+   terraform import kubernetes_namespace.shopeasy shopeasy
+
+  ### Files
+
+   terraform/main.tf       - Main infrastructure code 
+   terraform/variables.tf  - Input variables
+   terraform/outputs.tf    - Output values
+ 
+  ### Key Concepts
+  - Provider: plugin that talks to a platform (kubernetes, aws, azure)
+  - Resource: infrastructure component (deployment, service, namespace)
+  - State: terraform.tfstate file tracks what Terraform manages
+  - Plan: preview changes before applying                                                                                                                     - Import: bring existing resources under Terraform management
   ---------------------------
   PHASE 8 - ANSIBLE
   ---------------------------
