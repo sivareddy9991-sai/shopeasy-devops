@@ -1,0 +1,56 @@
+---
+- name: ShopeEasy Deployment
+  hosts: localhost
+  connection: local
+  vars:
+    nexus_url: "localhost:8083"
+    version: "1.0.0"
+  tasks:
+    - name: Login to Nexus registry
+      command: docker login {{ nexus_url }} -u admin -p Nexus123
+
+    - name: Pull user-service from Nexus
+      command: docker pull {{ nexus_url }}/shopeasy/user-service:{{ version }}
+
+    - name: Pull product-service from Nexus
+      command: docker pull {{ nexus_url }}/shopeasy/product-service:{{ version }}
+
+    - name: Stop existing user-service container
+      command: docker stop user-service
+      ignore_errors: yes
+
+    - name: Remove existing user-service container
+      command: docker rm user-service
+      ignore_errors: yes
+ 
+    - name: Run user-service container
+      command: docker run -d -p 3000:3000 --name user-service {{ nexus_url }}/shopeasy/user-service:{{ version }}
+
+    - name: Stop existing product-service container
+      command: docker stop product-service
+      ignore_errors: yes
+ 
+    - name: Remove existing product-service container
+      command: docker rm product-service
+      ignore_errors: yes
+
+    - name: Run product-service container
+      command: docker run -d -p 8081:8081 --name product-service {{ nexus_url }}/shopeasy/product-service:{{ version }}
+
+    - name: Wait for services to start
+      pause:
+        seconds: 10
+
+    - name: Verify user-service is running
+      uri:
+        url: http://localhost:3000/health
+        status_code: 200
+
+    - name: Verify product-service is running
+      uri:
+        url: http://localhost:8081/products
+        status_code: 200
+
+    - name: Deployment complete
+      debug:
+        msg: "ShopeEasy v{{ version }} deployed successfully!"

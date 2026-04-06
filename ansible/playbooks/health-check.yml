@@ -1,0 +1,34 @@
+---
+- name: ShopeEasy Health Check
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Check Docker is running
+      command: docker ps
+      register: docker_output
+
+    - name: Show Docker containers
+      debug:
+        msg: "{{ docker_output.stdout_lines }}"
+
+    - name: Check user-service health
+      uri:
+        url: http://localhost:3000/health
+        method: GET
+        status_code: 200
+      register: user_health
+
+    - name: Show user-service status
+      debug:
+        msg: "user-service status: {{ user_health.json.status }}"
+
+    - name: Check product-service health
+      uri:
+        url: http://localhost:8081/products
+        method: GET
+        status_code: 200
+      register: product_health
+  
+    - name: Show product-service status
+      debug:
+        msg: "product-service is responding with {{ product_health.status }} OK"
