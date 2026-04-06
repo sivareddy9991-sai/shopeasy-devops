@@ -522,7 +522,56 @@ k8s/user-service.yml    - Deployment + Service for user-service                 
   ---------------------------
   PHASE 8 - ANSIBLE
   ---------------------------
-  (fill after Phase 8 is done)
+  ### What is Ansible?
+
+  Ansible automates configuration and deployment tasks.
+  Terraform creates infrastructure, Ansible configures it.                                                                                                                                                                                                                                                                ### Real World Flow
+  Terraform creates servers  
+            ↓                           
+  Ansible SSHes in and configures them                                                                                                                                  ↓
+  Ansible deploys the application
+
+  ### Key Concepts
+
+  - Playbook: YAML file describing what tasks to run
+
+  - Inventory: list of servers to configure                                                                                                                                              
+  - Task: single action (install, copy, run command)
+
+  - Module: built-in Ansible function (uri, command, debug)
+
+  - vars: variables used inside playbooks
+
+  ### Installation
+  ansible --version: 2.16.3
+
+  ### Directory Structure
+  ansible/
+    inventory/
+      hosts.yml        - list of servers                                                                                                                                                 
+    playbooks/
+      health-check.yml - checks all services are healthy
+      deploy.yml       - pulls from Nexus and deploys containers
+
+  ### Key Commands
+  # Run health check playbook
+  ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/health-check.yml
+
+  # Run deploy playbook
+  ansible-playbook -i ansible/inventory/hosts.yml ansible/playbooks/deploy.yml
+
+  ### Playbooks Created
+  1. health-check.yml
+  
+     - Checks Docker is running                                                                                                                                                          
+     - Checks user-service health endpoint                                                                                                                                               
+     - Checks product-service health endpoint
+
+ 2. deploy.yml - Logs into Nexus registry                                                                                                                                                          
+     - Pulls latest images from Nexus                                                                                                                                                    
+     - Stops and removes old containers                                                                                                                                                  
+     - Starts fresh containers                                                                                                                                                           
+     - Verifies both services are healthy
   ---------------------------
   PHASE 9 - PROMETHEUS AND GRAFANA
   ---------------------------
