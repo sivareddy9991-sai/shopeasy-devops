@@ -9,7 +9,8 @@
   - Version Control   : Git + GitHub                                                                                                                                                     
   - Containerization  : Docker                                                                                                                                                           
   - CI/CD             : Jenkins                                                                                                                                                          
-  - Artifact Registry : JFrog Artifactory                                                                                                                                                
+  - Artifact Registry : Nexus
+                                                                                                                           
   - Orchestration     : Kubernetes (Minikube)                                                                                                                                            
   - IaC               : Terraform                                                                                                                                                        
   - Config Mgmt       : Ansible                                                                                                                                                          
@@ -21,13 +22,14 @@
                                                                                                                                                                                          
   ## Project Status                                                                                                                                                                      
   - [x] Phase 1  : Linux + Git Setup                                                                                                                                                     
-  - [x] Phase 2  : Microservices Code(Node.js+Java-spring-boot = completed)                                                                                                                                                    
-  - [ ] Phase 3  : Docker                                                                                                                                                                
-  - [ ] Phase 4  : Jenkins CI/CD                                                                                                                                                         
-  - [ ] Phase 5  : JFrog Artifactory                                                                                                                                                     
-  - [ ] Phase 6  : Kubernetes                                                                                                                                                            
-  - [ ] Phase 7  : Terraform                                                                                                                                                             
-  - [ ] Phase 8  : Ansible                                                                                                                                                               
-  - [ ] Phase 9  : Monitoring                                                                                                                                                            
-  - [ ] Phase 10 : Observability                                                                                                                                                         
+  - [x] Phase 2  : Microservices Code(Node.js+Java-spring-boot)                                                                                                                                                    
+  - [x] Phase 3  : Docker                                                                                                                                                                
+  - [x] Phase 4  : Jenkins CI/CD                                                                                                                                                         
+  - [x] Phase 5  : Nexus
+                                                                                                                            
+  - [x] Phase 6  : Kubernetes                                                                                                                                                            
+  - [x] Phase 7  : Terraform                                                                                                                                                             
+  - [x] Phase 8  : Ansible                                                                                                                                                               
+  - [x] Phase 9  : Monitoring                                                                                                                                                            
+  - [x] Phase 10 : Observability                                                                                                                                                         
                             
