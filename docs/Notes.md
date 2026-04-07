@@ -575,7 +575,49 @@ k8s/user-service.yml    - Deployment + Service for user-service                 
   ---------------------------
   PHASE 9 - PROMETHEUS AND GRAFANA
   ---------------------------
-  (fill after Phase 9 is done)
+  ### What is Prometheus?
+
+  Prometheus collects metrics from your services every 15 seconds. It stores time-series data (CPU, memory, request count, response time).
+ 
+  ### What is Grafana?
+ 
+  Grafana displays Prometheus metrics as beautiful dashboards. It shows graphs, alerts, and real-time data. 
+
+  ### Real World Flow
+  Services running  
+          ↓                                                                                                                                                 Prometheus scrapes metrics every 15 seconds                                                                                                         
+          ↓                               
+  Grafana shows dashboards                                                                                                                                          ↓                                                                                                                                                 Alert fires if something goes wrong
+          ↓                            
+  SRE gets notified and fixes it
+
+  ### Setup 
+  - Prometheus runs on port 9090 
+  - Grafana runs on port 3001                                                                                                                           
+  - Config at /home/kalkal/shopeasy/monitoring/ 
+
+  ### Credentials
+  - Grafana: admin / Admin@123
+
+  ### Start Monitoring
+  cd /home/kalkal/shopeasy/monitoring && docker-compose up -d 
+
+  ### Access    
+  - Prometheus: http://localhost:9090
+  - Grafana: http://localhost:3001
+
+  ### Key Concepts
+  - Scrape: Prometheus pulls metrics from services   
+ 
+  - up metric: 1 = service is up, 0 = service is down                                                                                                                                    
+  - PromQL: Prometheus query language                                                                                                                                                    
+  - Dashboard: collection of panels showing metrics                                                                                                                                      
+  - Panel: single graph or visualization
+
+  ### Dashboard Created 
+  - Name: ShopeEasy Dashboard
+
+  - Panel: Services Status (shows up/down for all services) 
   ---------------------------
   PHASE 10 - OBSERVABILITY
   ---------------------------
